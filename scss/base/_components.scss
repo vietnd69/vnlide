@@ -1,0 +1,90 @@
+.loading {
+    &::before {
+        content: "";
+        position: fixed;
+        z-index: 10000;
+        @include move(0);
+        display: flex;
+        @include flexAglin(center,center);
+        @include square(100%);
+        background-color: #fff;
+        background-image: url(../assets/loading.gif);
+        @include bg(no-repeat,center 44%,auto);
+    }
+}
+.done {
+    &::before {
+        @extend .loading::before;
+        animation: loading 1s 1s;
+    }
+}
+.btn {
+    border-radius: 0;
+    display: flex;
+    @include flexAglin(center,center);
+    width: 100%;
+    height: 63px;
+}
+.lang {
+    @include tablet {
+        position: absolute;
+        right: 0;
+        height: 100%;
+    }
+    form {
+        height: 100%;
+        display: flex;
+        > span {
+            display: inline-block;
+            height: 100%;
+        }
+    }
+    [type="radio"]:checked, 
+    [type="radio"]:not(:checked) {
+        position: absolute;
+        left: -9999px;
+        display: none;
+    }
+    [type="radio"]:checked + label,
+    [type="radio"]:not(:checked) + label
+    {
+        position: relative;
+        cursor: pointer;
+        display: inline-block;
+        color: $cl-white;
+        z-index: 1;
+        padding: 0px 8px;
+        font-weight: 500;
+        @include tablet {
+            color: $cl-black;
+        }
+    }
+    
+    [type="radio"]:checked + label:after,
+    [type="radio"]:not(:checked) + label:after {
+        content: '';
+        width: 100%;
+        height: 100%;
+        background: rgba(black,0.1);
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        -webkit-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+    }
+    [type="radio"]:not(:checked) + label:after {
+        opacity: 0;
+    
+    }
+    [type="radio"]:checked + label:after {
+        opacity: 1;
+    }
+    label {
+        display: inline-flex !important;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        margin-bottom: 0;
+    }
+}

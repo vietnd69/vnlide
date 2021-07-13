@@ -1,0 +1,296 @@
+// responsive mixin
+@mixin mobile {
+    @media (max-width: #{$mobile-width - 1px}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (max-width: #{$desktop-width - 1px}) {
+        @content;
+    }
+}
+
+@mixin responsve($width) {
+    @media (max-width: #{$width - 1px}) {
+        @content;
+    }
+}
+
+
+
+// flex mixin
+@mixin flex($direction:null, $wrap:null, $justifyContent:null, $aglinItem:null, $aglinContent:null) {
+    display: flex;
+
+    @if $direction !=null {
+        flex-direction: $direction
+    }
+
+    @if $wrap !=null {
+        flex-wrap: $wrap
+    }
+
+    @if $justifyContent !=null {
+        justify-content: $justifyContent
+    }
+
+    @if $aglinItem !=null {
+        align-items: $aglinItem
+    }
+
+    @if $aglinContent !=null {
+        align-content: $aglinContent
+    }
+}
+
+@mixin flexAglin($justifyContent, $aglinItem:null, $aglinContent:null) {
+    @if $justifyContent !=null {
+        justify-content: $justifyContent
+    }
+
+    @if $aglinItem !=null {
+        align-items: $aglinItem
+    }
+
+    @if $aglinContent !=null {
+        align-content: $aglinContent
+    }
+}
+
+@mixin flexSetup($direction, $wrap:null) {
+    @if $direction !=null {
+        flex-direction: $direction
+    }
+
+    @if $wrap !=null {
+        flex-wrap: $wrap
+    }
+}
+
+
+
+// persudo mixin
+@mixin persudoIcon($content) {
+    font-family: 'Material Icons';
+    content: "#{$content}";
+    display: inline-block;
+    position: relative;
+    font-size: 24px;
+}
+
+@mixin persudo($display, $postison, $width:null, $height:null, $top:null, $right:null, $bottom:null, $left:null) {
+    content: "";
+    display: $display;
+    position: $postison;
+
+    @if $width !=null {
+        width: $width;
+    }
+
+    @if $height !=null {
+        height: $height;
+    }
+
+    @else {
+        @if $width !=null {
+            height: $width;
+            ;
+        }
+    }
+
+    @if $top !=null {
+        top: $top;
+    }
+
+    @if $right !=null {
+        right: $right;
+    }
+
+    @if $bottom !=null {
+        bottom: $bottom;
+    }
+
+    @if $left !=null {
+        left: $left;
+    }
+}
+
+// position mixin
+@mixin position($postion, $zIndex:null, $top:null, $right:null, $bottom:null, $left:null) {
+    position: $postion;
+
+    @if $zIndex !=null {
+        z-index: $zIndex;
+    }
+
+    @if $top !=null {
+        top: $top;
+    }
+
+    @if $right !=null {
+        right: $right;
+    }
+
+    @if $bottom !=null {
+        bottom: $bottom;
+    }
+
+    @if $left !=null {
+        left: $left;
+    }
+}
+
+@mixin positionZ($zIndex:null, $position:null) {
+    @if $position !=null {
+        position: $position;
+    } @else {
+        position: relative;
+    }
+
+    @if $zIndex !=null {
+        z-index: $zIndex;
+    }
+}
+
+@mixin move($top:null, $right:null, $bottom:null, $left:null) {
+    @if $top !=null {
+        top: $top;
+    }
+
+    @if $right !=null {
+        right: $right;
+    }
+
+    @else {
+        @if $top !=null {
+            right: $top;
+        }
+    }
+
+    @if $bottom !=null {
+        bottom: $bottom;
+    }
+
+    @else {
+        @if $top !=null {
+            bottom: $top;
+        }
+    }
+
+    @if $left !=null {
+        left: $left;
+    }
+
+    @else {
+        @if $right !=null {
+            left: $right;
+        }
+
+        @else {
+            @if $top !=null {
+                left: $top;
+            }
+        }
+
+    }
+}
+
+@mixin moveTranform($cross:null, $top:null, $left:null) {
+    @if $top !=null {
+        top: $top;
+    }
+
+    @if $left !=null {
+        left: $left;
+    }
+
+    @else {
+        @if $top !=null {
+            left: $top;
+        }
+    }
+
+    @if $cross !=null {
+        @if $cross==xy {
+            transform: translate(-50%, -50%);
+        }
+
+        @if $cross==x {
+            transform: translateX(-50%);
+        }
+
+        @if $cross==y {
+            transform: translateY(-50%);
+        }
+    }
+
+}
+
+// size
+@mixin size($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+@mixin square($size) {
+    width: $size;
+    height: $size;
+}
+@mixin maxSquare($size) {
+    max-width: $size;
+    max-height: $size;
+}
+
+// font
+@mixin font($fontSize, $fontWeight, $fontColor) {
+    @if $fontSize !=null {
+        font-size: $fontSize;
+    }
+
+    @if $fontWeight !=null {
+        font-weight: $fontWeight;
+    }
+
+    @if $fontColor !=null {
+        color: $fontColor;
+    }
+}
+
+// bg
+@mixin bg($repeat, $potision, $size) {
+    @if $repeat !=null {
+        background-repeat: $repeat;
+    }
+
+    @if $potision !=null {
+        background-position: $potision;
+    }
+
+    @if $size !=null {
+        background-size: $size;
+    }
+}
+
+// border
+@mixin borderRadius($topRight:null, $bottomRight:null, $bottomLeft:null, $topLeft:null) {
+    @if $topRight !=null {
+        border-top-right-radius: $topRight;
+    }
+
+    @if $bottomRight !=null {
+        border-bottom-right-radius: $bottomRight;
+    }
+
+    @if $bottomLeft !=null {
+        border-bottom-left-radius: $bottomLeft;
+    }
+
+    @if $topLeft !=null {
+        border-top-left-radius: $topLeft;
+    }
+}
+
+@mixin background-opacity($color, $opacity: 0.3) {
+    background: rgba($color, $opacity);
+}
